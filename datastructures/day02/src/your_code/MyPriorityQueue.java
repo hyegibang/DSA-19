@@ -8,10 +8,14 @@ import java.util.LinkedList;
 public class MyPriorityQueue {
     private LinkedList<Integer> ll;
 
+    public MyPriorityQueue(){
+        ll = new LinkedList<>();
+    }
+
+
     public void enqueue(int item) {
         // TODO
-        if (ll.isEmpty() || ll.getLast() < item)
-            ll.addLast(item);
+        ll.add(item);
     }
 
     /**
@@ -19,7 +23,18 @@ public class MyPriorityQueue {
      */
     public int dequeueMax() {
         // TODO
-        return ll.remove(ll.size());
+        int max = ll.getFirst();
+        int index = 0;
+        for (int i = 1; i < ll.size(); i++) {
+            int val = ll.get(i);
+            if (val > max) {
+                max = val;
+                index = i;
+            }
+        }
+
+         ll.remove(index);
+        return max;
     }
 
 }

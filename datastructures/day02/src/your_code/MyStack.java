@@ -19,14 +19,15 @@ public class MyStack implements StackADT<Integer> {
     @Override
     public void push(Integer e) {
         ll.addFirst(e);
-        if (max.isEmpty() || max.getFirst() > e) //only add that's smaller
+        if (max.isEmpty() || max.getFirst() < e ) //only add that's smaller
             max.addFirst(e);
+
     }
 
     @Override
     public Integer pop() {
         Integer pop = ll.removeFirst();
-        if (!max.isEmpty())
+        if (!max.isEmpty() && pop.equals(max.getFirst()))
             max.removeFirst();
         return pop;
     }
@@ -38,6 +39,7 @@ public class MyStack implements StackADT<Integer> {
 
     @Override
     public Integer peek() {
+
         return ll.getFirst();
     }
 
