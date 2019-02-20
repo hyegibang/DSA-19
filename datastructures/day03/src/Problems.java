@@ -24,7 +24,8 @@ public class Problems {
                 l.pop();
                 k--;
                 }
-            if (l.size() < A.length - k) {
+
+            if (l.size() < A.length -k ) {
                 l.push(A[i]);
             }
 
