@@ -1,26 +1,35 @@
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.*;
 
 public class QuickSort extends SortAlgorithm {
 
     private static final int INSERTION_THRESHOLD = 10;
+
     private void shuffleArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            int randIndex = ThreadLocalRandom.current().nextInt(i+1);
+            int randIndex = ThreadLocalRandom.current().nextInt(i + 1);
             swap(array, i, randIndex);
         }
     }
 
     /**
      * TODO
-     * Best-case runtime:
-     * Worst-case runtime:
-     * Average-case runtime:
-     *
-     * Space-complexity:
+     * Best-case runtime: O(nlogn)
+     * Worst-case runtime: O(n^2)
+     * Average-case runtime: O(nlogn)
+     * <p>
+     * Space-complexity: O(logn)
      */
     @Override
     public int[] sort(int[] array) {
         // TODO: Sort the array. Make sure you avoid the O(N^2) runtime worst-case
+        Random random = new Random();
+        for (int i = 0; i < array.length; i++) {
+            int rand = random.nextInt(array.length);
+            swap(array, i, rand);
+        }
+        quickSort(array, 0 , array.length - 1); //##
+
         return array;
     }
 
@@ -35,7 +44,9 @@ public class QuickSort extends SortAlgorithm {
     public void quickSort(int[] a, int lo, int hi) {
         if (lo < hi) {
             int p = partition(a, lo, hi);
-            // TODO
+            quickSort(a, lo, p-1);
+            quickSort(a, p+1, hi);
+
         }
     }
 
@@ -50,7 +61,16 @@ public class QuickSort extends SortAlgorithm {
      */
     public int partition(int[] array, int lo, int hi) {
         // TODO
-        return 0;
+        int pivot = array[lo];
+        while (lo < hi) {
+            if (pivot > array[lo + 1]) {
+                swap(array, lo, lo + 1);
+                lo++;
+            } else {
+                swap(array, lo+1, hi);
+                hi--;
+            }
+        }
+        return lo;
     }
-
 }
