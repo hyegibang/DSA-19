@@ -1,7 +1,15 @@
+import java.util.LinkedList;
+
 public class Problems {
 
     static void sortNumsBetween100s(int[] A) {
-        // TODO
+        for(int i =0; i<A.length; i++){
+            A[i] = A[i]+ 100;
+        }
+        CountingSort.countingSort(A);
+        for(int i =0; i<A.length; i++){
+            A[i] = A[i] - 100;
+        }
     }
 
     /**
@@ -20,6 +28,21 @@ public class Problems {
      */
     static void countingSortByCharacter(String[] A, int n) {
         // TODO
+        LinkedList<String>[] L = new LinkedList[256];
+        for (int i = 0; i < 256; i++)
+            L[i] = new LinkedList<>();
+        for (String s : A) {
+            // TODO: Extract the relevant digit from i, and add i to the corresponding Linked List.
+            L[getNthCharacter(s,n)].add(s);
+        }
+        int j = 0; // index in A to place numbers
+        for (LinkedList<String> list : L) {
+            // TODO: Put all numbers in the linked lists into A
+            while(list.size() > 0){
+                A[j] = list.pop();
+                j++;
+            }
+        }
     }
 
     /**
@@ -28,6 +51,10 @@ public class Problems {
     static void sortStrings(String[] S, int stringLength) {
         // TODO
     }
+
+
+
+
 
     /**
      * @param A The array to count swaps in
