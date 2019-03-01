@@ -23,7 +23,7 @@ public class Skyline {
 
     // Given an array of buildings, return a list of points representing the skyline
     public static List<Point> skyline(Building[] B) {
-        // TODO
+
         return new ArrayList<>();
     }
 }

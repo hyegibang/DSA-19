@@ -80,55 +80,55 @@ public class ProblemsTests {
     /**
      * Test method for {@link Problems#sortStrings(String[], int)}.
      */
-//    @Test
-//    public void testSortString() {
-//        int[] lengths = new int[]{5, 10, 20};
-//        for (int l : lengths) {
-//            String[] S = generateRandomStringArrayOfSize(10000, l);
-//            String[] sorted = sort(S);
-//            Problems.sortStrings(S, l);
-//            assertArrayEquals(S, sorted);
-//
-//        }
-//    }
+    @Test
+    public void testSortString() {
+        int[] lengths = new int[]{5, 10, 20};
+        for (int l : lengths) {
+            String[] S = generateRandomStringArrayOfSize(10000, l);
+            String[] sorted = sort(S);
+            Problems.sortStrings(S, l);
+            assertArrayEquals(S, sorted);
 
-//    @Test
-//    public void countSwapsCaseOne() {
-//        //No swap
-//        assertEquals(0, Problems.countSwaps(new int[]{}));
-//    }
-//
-//    @Test
-//    public void countSwapsCaseTwo() {
-//        //No Swap
-//        assertEquals(0, Problems.countSwaps(new int[]{0}));
-//    }
-//
-//    @Test
-//    public void countSwapsCaseThree() {
-//        //No swap
-//        assertEquals(0, Problems.countSwaps(new int[]{1,2}));
-//    }
-//
-//    @Test
-//    public void countSwapsCaseFour() {
-//        //Swap 2 <-> 1
-//        assertEquals(1, Problems.countSwaps(new int[]{2,1}));
-//    }
-//
-//    @Test
-//    public void countSwapsCaseFive() {
-//        //Swap 5 <-> 1
-//        //     4 <-> 2
-//        assertEquals(10, Problems.countSwaps(new int[]{5,4,3,2,1}));
-//    }
-//
-//    @Test
-//    public void countSwapsCaseSix() {
-//        //Swap 3 <-> 1
-//        //     3 <-> 2
-//        assertEquals(2, Problems.countSwaps(new int[]{3,1,2,4}));
-//    }
+        }
+    }
+
+    @Test
+    public void countSwapsCaseOne() {
+        //No swap
+        assertEquals(0, Problems.countSwaps(new int[]{}));
+    }
+
+    @Test
+    public void countSwapsCaseTwo() {
+        //No Swap
+        assertEquals(0, Problems.countSwaps(new int[]{0}));
+    }
+
+    @Test
+    public void countSwapsCaseThree() {
+        //No swap
+        assertEquals(0, Problems.countSwaps(new int[]{1,2}));
+    }
+
+    @Test
+    public void countSwapsCaseFour() {
+        //Swap 2 <-> 1
+        assertEquals(1, Problems.countSwaps(new int[]{2,1}));
+    }
+
+    @Test
+    public void countSwapsCaseFive() {
+        //Swap 5 <-> 1
+        //     4 <-> 2
+        assertEquals(10, Problems.countSwaps(new int[]{5,4,3,2,1}));
+    }
+
+    @Test
+    public void countSwapsCaseSix() {
+        //Swap 3 <-> 1
+        //     3 <-> 2
+        assertEquals(2, Problems.countSwaps(new int[]{3,1,2,4}));
+    }
 
     private static int[] generateRandomArrayOfSize(int n, int min, int max) {
         int[] random = new int[n];

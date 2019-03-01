@@ -3,6 +3,9 @@ import java.util.LinkedList;
 public class Problems {
 
     static void sortNumsBetween100s(int[] A) {
+        /**
+         * Time Complexity --> actually  O(3n+k) but if linear discard so O(n+k)
+         */
         for(int i =0; i<A.length; i++){
             A[i] = A[i]+ 100;
         }
@@ -28,8 +31,8 @@ public class Problems {
      */
     static void countingSortByCharacter(String[] A, int n) {
         // TODO
-        LinkedList<String>[] L = new LinkedList[256];
-        for (int i = 0; i < 256; i++)
+        LinkedList<String>[] L = new LinkedList[26];
+        for (int i = 0; i < 26; i++)
             L[i] = new LinkedList<>();
         for (String s : A) {
             // TODO: Extract the relevant digit from i, and add i to the corresponding Linked List.
@@ -50,6 +53,9 @@ public class Problems {
      */
     static void sortStrings(String[] S, int stringLength) {
         // TODO
+        for (int i = 0; i < stringLength; i++) {
+            countingSortByCharacter(S, i);
+        }
     }
 
 

@@ -17,17 +17,19 @@ public class RadixSort {
      *
      * @param b The base used in radix sort
      * @param n The digit number (where 0 is the least significant digit)
+     *          Linked List --> storing the entire number but compare the digit
+     *
      */
     static void countingSortByDigit(int[] A, int b, int n) {
         LinkedList<Integer>[] L = new LinkedList[b];
         for (int i = 0; i < b; i++)
             L[i] = new LinkedList<>();
-        for (int i : A) {
+        for (int x : A) { // each element in A
             // TODO: Extract the relevant digit from i, and add i to the corresponding Linked List.
-            L[getNthDigit(i,b,n)].add(i);
+            L[getNthDigit(x,b,n)].add(x);
         }
         int j = 0; // index in A to place numbers
-        for (LinkedList<Integer> list : L) {
+        for (LinkedList<Integer> list : L) { // for each loop
             // TODO: Put all numbers in the linked lists into A
             while(list.size() > 0){
                 A[j] = list.pop();
