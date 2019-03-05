@@ -1,5 +1,5 @@
+import java.util.LinkedList;
 import java.util.List;
-
 public class BinarySearchTree<T extends Comparable<T>> {
     TreeNode<T> root;
     private int size;
@@ -27,9 +27,23 @@ public class BinarySearchTree<T extends Comparable<T>> {
             add(k);
     }
 
-    public List<T> inOrderTraversal() {
-        // TODO
-        return null;
+    public List<T> inOrderTraversal() { //O(n)
+        List<T> result = new LinkedList<>();
+        TreeNode<T> currNode = findMin(root);
+
+        if(currNode == null) {
+            return result;
+        }
+
+        else {
+            while(!(findSuccessor(currNode) == null)) {
+                result.add(currNode.key);
+                currNode = findSuccessor(currNode);
+            }
+            result.add(currNode.key);
+        }
+
+        return result;
     }
 
     /**
@@ -58,16 +72,20 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
         TreeNode<T> replacement;
 
-        if (n.isLeaf())
+        if (n.isLeaf()) {
             // Case 1: no children
             replacement = null;
-        else if (n.hasRightChild() != n.hasLeftChild())
+        }
+        else if (n.hasRightChild() != n.hasLeftChild()) {
             // Case 2: one child
             replacement = (n.hasRightChild()) ? n.rightChild : n.leftChild; // replacement is the non-null child
+        }
         else {
             // Case 3: two children
             // TODO
-            replacement = null;
+            replacement = findSuccessor(n);
+            delete(replacement);
+            replacement.moveChildrenFrom(n);
         }
 
         // Put the replacement in its correct place, and set the parent.
@@ -76,12 +94,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public T findPredecessor(T key) {
-        // finds and returns the TreeNode with key = key if such a TreeNode exists in the tree
         TreeNode<T> n = find(root, key);
         if (n != null) {
-            // get the predecessor TreeNode by calling the function you will implement below
             TreeNode<T> predecessor = findPredecessor(n);
-            // return the key of predecessor TreeNode
             if (predecessor != null)
                 return predecessor.key;
         }
@@ -89,12 +104,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public T findSuccessor(T key) {
-        // finds and returns the TreeNode with key = key if such a TreeNode exists in the tree
         TreeNode<T> n = find(root, key);
         if (n != null) {
-            // get the successor TreeNode by calling the function you will implement below
             TreeNode<T> successor = findSuccessor(n);
-            // return the key of successor TreeNode
             if (successor != null)
                 return successor.key;
         }
@@ -102,13 +114,55 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     private TreeNode<T> findPredecessor(TreeNode<T> n) {
-        // TODO
-        return null;
+        if (n.hasLeftChild()) {
+            return findMax(n.leftChild);
+        }
+
+        TreeNode<T> temp = n.parent;
+        while(temp != null && n == temp.leftChild) {
+            n = temp;
+            temp = temp.parent;
+        }
+
+        return temp;
     }
 
     private TreeNode<T> findSuccessor(TreeNode<T> n) {
-        // TODO
-        return null;
+        if (n.hasRightChild()) {
+            return findMin(n.rightChild);
+        }
+
+        TreeNode<T> temp = n.parent;
+        while(temp != null && n == temp.rightChild) {
+            n = temp;
+            temp = temp.parent;
+        }
+
+        return temp;
+    }
+
+    private TreeNode<T> findMin (TreeNode<T> n) {
+        TreeNode<T> temp = n;
+
+        if(n == null) {
+            return null;
+        }
+
+        while(temp.leftChild != null) {
+            temp = temp.leftChild;
+        }
+
+        return temp;
+    }
+
+    private TreeNode<T> findMax (TreeNode<T> n) {
+        TreeNode<T> temp = n;
+
+        while(temp.rightChild != null) {
+            temp = temp.rightChild;
+        }
+
+        return temp;
     }
 
     /**

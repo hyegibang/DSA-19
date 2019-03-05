@@ -8,7 +8,19 @@ public class Problems {
     }
 
     public static boolean isIsomorphic(TreeNode n1, TreeNode n2) {
-        // TODO
-        return false;
+        if (n1 == null) {
+            if (n2 == null) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        if (n1.key != n2.key)
+            return false;
+
+        boolean res = ((isIsomorphic(n1.leftChild, n2.leftChild) && isIsomorphic(n1.rightChild, n2.rightChild)) || (isIsomorphic(n1.leftChild, n2.rightChild) && isIsomorphic(n1.rightChild, n2.leftChild)));
+        return res;
     }
 }

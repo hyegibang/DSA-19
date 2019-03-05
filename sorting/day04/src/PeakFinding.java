@@ -84,7 +84,7 @@ public class PeakFinding {
         int x_pt = peakX(Xmid, Ymid, nums);
         int y_pt = peakY(Xmid, Ymid, nums);
 
-        while ((Xmid > 0 || Xmid < nums.length - 1) && (Ymid > 0 || Ymid < nums[0].length - 1)) {
+        while ((Xmid > 0 || Xmid < nums.length - 1) && (Ymid > 0 || Ymid < nums.length - 1)) {
 
             if (x_pt == 0 && y_pt == 0) {
                 answer[1] = Xmid;
@@ -122,10 +122,10 @@ public class PeakFinding {
 
 }
 /*
-* Base Case: when peak functions equal zero
+* Base Case: when peak functions equal zero // no base case
 * Divide: Divide the given array in the middle and compare from there
 * Conquer: Base on the result from divide, recursion to find a peak or find more peak
-* Combine: Combine the result of X_dir and Y_dir
+* Combine: Combine the result of X_dir and Y_dir // no
 *
 * Time Complexity - O(n)
 * */
