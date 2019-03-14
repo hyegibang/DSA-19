@@ -7,10 +7,12 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     public static final boolean BLACK = false;
 
     private boolean isRed(TreeNode x) {
+
         return x != null && x.color == RED;
     }
 
     private boolean isBlack(TreeNode x) {
+
         return x != null && x.color == BLACK;
     }
 
@@ -35,19 +37,32 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     // make a left-leaning link lean to the right
     TreeNode<T> rotateRight(TreeNode<T> h) {
-        // TODO
-        return h;
+        TreeNode<T> tree1 = h.leftChild;
+
+        h.leftChild = tree1.rightChild;
+        tree1.rightChild = h;
+        tree1.color = tree1.rightChild.color;
+        tree1.rightChild.color = RED;
+        return tree1;
     }
 
     // make a right-leaning link lean to the left
     TreeNode<T> rotateLeft(TreeNode<T> h) {
-        // TODO
-        return h;
+        TreeNode<T> tree1 = h.rightChild;
+
+        h.rightChild = tree1.leftChild;
+        tree1.leftChild = h;
+        tree1.color = tree1.leftChild.color;
+        tree1.leftChild.color = RED;
+        return tree1;
     }
 
     // flip the colors of a TreeNode and its two children
+    // ! inverts
     TreeNode<T> flipColors(TreeNode<T> h) {
-        // TODO
+        h.color = !h.color;
+        h.leftChild.color = !h.leftChild.color;
+        h.rightChild.color = !h.rightChild.color;
         return h;
     }
 
@@ -60,8 +75,17 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * return balanced node
      */
     private TreeNode<T> balance(TreeNode<T> h) {
-        // TODO
+        if (isRed(h.rightChild)) {
+            h = rotateLeft(h);
+        }
+        if (isRed(h.leftChild) && isRed(h.leftChild.leftChild)) {
+            h = rotateRight(h);
+        }
+        if (isRed(h.leftChild) && isRed(h.rightChild)) {
+            flipColors(h);
+        }
         return h;
+
     }
 
 
@@ -71,9 +95,9 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      */
     @Override
     TreeNode<T> insert(TreeNode<T> h, T key) {
+
         h = super.insert(h, key);
-        // TODO: use balance to correct for the three rotation cases
-        return h;
+        return balance(h);
     }
 
 
@@ -134,9 +158,12 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     // return true if this LLRB is a valid 2-3 tree
     private boolean is23(TreeNode<T> n) {
-        if (n == null) return true;
-        if (isRed(n.rightChild)) return false;
-        if (isRed(n.leftChild) && isRed(n.leftChild.leftChild)) return false;
+        if (n == null)
+            return true;
+        if (isRed(n.rightChild))
+            return false;
+        if (isRed(n.leftChild) && isRed(n.leftChild.leftChild))
+            return false;
         return is23(n.rightChild) && is23(n.leftChild);
     }
 
