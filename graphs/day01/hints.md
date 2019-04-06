@@ -1,4 +1,4 @@
-## N-Queens
+## nickels-Queens
 
 <details>
   <summary>Hint 1</summary>

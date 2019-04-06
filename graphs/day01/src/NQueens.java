@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class NQueens {
@@ -37,7 +38,6 @@ public class NQueens {
         return false;
     }
 
-
     /**
      * Creates a deep copy of the input array and returns it
      */
@@ -49,10 +49,37 @@ public class NQueens {
     }
 
 
+    private static List<char[][]> nQueensHelper(char[][] board, int row, int[] columns, List<char[][]> curr){
+        //base case -- if every row has valid queen placed in the board
+        if(row==board.length)
+            curr.add(copyOf(board));
+
+        for(int i=0; i<board.length; i++){
+            if(columns[i] == 0 && !checkDiagonal(board, row, i)){
+                columns[i] = 1;
+                board[row][i] = 'Q';
+                nQueensHelper(board, row+1, columns, curr); //permutation -- check whether valid
+                board[row][i] = '.';
+                columns[i] = 0;
+            }
+        }
+        return curr;
+    }
+
     public static List<char[][]> nQueensSolutions(int n) {
         // TODO
-        List<char[][]> answers = new ArrayList<>();
-        return answers;
+        List<char[][]> result = new ArrayList<>();
+        char[][] boards = new char[n][n];
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                boards[i][j] = '.';
+            }
+        }
+
+        int[] columns = new int[n];
+        result = nQueensHelper(boards,  0, columns, result);
+        return result;
     }
 
 }
+// time O(n^2 * n!)
