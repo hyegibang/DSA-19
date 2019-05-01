@@ -4,7 +4,7 @@ public class DPTemplate {
     //PUBLIC FUNCTION
     public long publicFunction(/* User inputs */){
 
-        /** INITIALIZE THE MEMO */
+        /** INITIALIZE THE DP */
 
         // CALL RECURSIVE FUNCTION ON PROBLEM THAT YOU WANT TO SOLVE, RETURNING THE ANSWER
 
@@ -13,7 +13,7 @@ public class DPTemplate {
 
     }
 
-    private long recursiveFunction(/* Only arguments that are part of subproblem, and your memo */){
+    private long recursiveFunction(/* Only arguments that are part of subproblem, and your DP */){
 
         // BASE CASES
 
@@ -24,7 +24,7 @@ public class DPTemplate {
         // RECURRENCE RELATION, CALL YOUR RECURSIVE FUNCTION
 
 
-        /** UPDATE THE MEMO */
+        /** UPDATE THE DP */
 
 
         // RETURN THE ANSWER
